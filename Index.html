@@ -3,44 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel Mai Kaloli</title>
-    <!-- Wannan script din yana da matukar muhimmanci don hada shafin da Telegram -->
+    <title>MJ Films Buttons</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
             background-color: #18222d; /* Kalar duhu irin ta Telegram */
             color: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 95vh;
+            justify-content: space-between;
         }
-        h3 {
-            margin-bottom: 25px;
-            font-size: 18px;
+        .container {
+            flex-grow: 1;
         }
-        /* Tsarukan mabuɗanmu masu kaloli */
+        /* Jera mabuɗan guda biyu a jiri guda */
+        .row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
         .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            margin: 12px 0;
+            flex: 1;
+            padding: 15px;
             border: none;
-            border-radius: 10px; /* Round corners irin na wancan hoton */
+            border-radius: 10px; /* Round corners irin na hoton */
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
+            text-align: center;
         }
         .btn-green {
-            background-color: #2ca02c; /* Kore */
+            background-color: #3b9c45; /* Kore mai sanyi irin na bot din */
             color: white;
         }
         .btn-red {
-            background-color: #d62728; /* Ja */
+            background-color: #b33939; /* Ja irin na Close */
             color: white;
+            width: 100%;
         }
-        /* Idan mutum ya taba button din */
         .btn:active {
             opacity: 0.8;
         }
@@ -48,21 +53,31 @@
 </head>
 <body>
 
-    <h3>ZABIN MA'AIKACI (ADMIN PANEL) 👇</h3>
-    
-    <!-- Mabuɗi na farko (Kore) -->
-    <button class="btn btn-green" onclick="tuntubiBot('convert_file_video')">📁 Convert File to Video</button>
-    
-    <!-- Mabuɗi na biyu (Ja) -->
-    <button class="btn btn-red" onclick="tuntubiBot('cancel_admin')">❌ Cancel</button>
+    <div class="container">
+        <div class="row">
+            <button class="btn btn-green" onclick="tuntubiBot('data4')">Data4</button>
+            <button class="btn btn-green" onclick="tuntubiBot('films')">Films</button>
+        </div>
+        
+        <div class="row">
+            <button class="btn btn-green" onclick="tuntubiBot('follow')">Follow</button>
+            <button class="btn btn-green" onclick="tuntubiBot('nazifi')">Nazifi</button>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn btn-red" onclick="rufeApp()">Close</button>
+    </div>
 
     <script>
-        // Bayyana wa Telegram cewa Web App ya gama loading
         Telegram.WebApp.ready();
 
-        // Wannan function din shi zai tura abin da aka danna zuwa bot dinka na Python
         function tuntubiBot(sako) {
-            Telegram.WebApp.sendData(sako);
+            Telegram.WebApp.sendData(sako); // Zai tura rubutun zuwa bot
+        }
+
+        function rufeApp() {
+            Telegram.WebApp.close(); // Zai rufe shafin ya koma chat
         }
     </script>
 </body>
